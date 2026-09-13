@@ -1,0 +1,165 @@
+import { defineStore } from 'pinia'
+
+export interface FilmItem {
+  id: string
+  title: string
+  originalTitle?: string
+  director: string
+  studio: string
+  year: string
+  duration: string
+  aspectRatio: string
+  audioFormat: string
+  colorGrade: string
+  colorPalette: string[]
+  synopsis: string
+  curatorQuote: string
+  awards: string[]
+  mood: 'dystopia' | 'adrenalin' | 'kontemplatif' | 'animasi'
+  moodLabel: string
+  backdrop: string
+  poster: string
+  src: string
+  isFeatured?: boolean
+}
+
+export const useVideoStore = defineStore('video', () => {
+  const films = ref<FilmItem[]>([
+    {
+      id: '1',
+      title: 'Tears of Steel',
+      originalTitle: 'Project Mango',
+      director: 'Ian Hubert',
+      studio: 'Blender VFX Institute • Amsterdam',
+      year: '2024 Remaster',
+      duration: '12:14',
+      aspectRatio: '2.39:1 Scope',
+      audioFormat: 'Dolby Digital 5.1 Surround',
+      colorGrade: 'ACES / Cyberpunk Desaturated Cyan',
+      colorPalette: ['#172554', '#0f766e', '#d97706', '#334155', '#020617'],
+      synopsis: 'Berlatar di distopia masa depan di Amsterdam, sekelompok ilmuwan dan pejuang gerilya berusaha mementaskan kembali rekaman emosional masa lalu untuk menenangkan kecerdasan robot raksasa penghancur peradaban.',
+      curatorQuote: '“Eksplorasi fiksi ilmiah yang memadukan kerapuhan romansa manusia di bawah bayang-bayang dentuman logam mesin mekanis.”',
+      awards: ['Koleksi Khusus Arsip Sinema Terbuka', 'Official Selection SIGGRAPH', '4K Master Edition'],
+      mood: 'dystopia',
+      moodLabel: 'Distopia & Rekayasa',
+      backdrop: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&auto=format&fit=crop&q=90',
+      poster: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=700&auto=format&fit=crop&q=85',
+      src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+      isFeatured: true
+    },
+    {
+      id: '2',
+      title: 'Sprite Fight',
+      originalTitle: 'English Countryside Mayhem',
+      director: 'Matthew Luhn',
+      studio: 'Blender Studio • London Unit',
+      year: '2023',
+      duration: '10:24',
+      aspectRatio: '2.35:1 Anamorphic',
+      audioFormat: 'Discrete 5.1 Surround',
+      colorGrade: 'Rich Autumn Foliage & Horror Contrast',
+      colorPalette: ['#451a03', '#78350f', '#15803d', '#b91c1c', '#0c0a09'],
+      synopsis: 'Ketika lima remaja bertualang ke hutan terpencil di pedesaan Inggris tahun 80-an, mereka berhadapan dengan makhluk hutan bertubuh mungil yang ternyata haus darah dan tak berbelas kasihan.',
+      curatorQuote: '“Pemberian hormat yang nakal dan berani terhadap film horor komedi dekade 80-an dengan timing komedi gerak tingkat tinggi.”',
+      awards: ['Festival Animasi Annecy - Official Selection', 'Best Indie Horror Comedy Short'],
+      mood: 'adrenalin',
+      moodLabel: 'Adrenalin & Ketegangan',
+      backdrop: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1920&auto=format&fit=crop&q=90',
+      poster: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=700&auto=format&fit=crop&q=85',
+      src: 'https://files.vidstack.io/sprite-fight/hls/stream.m3u8',
+      isFeatured: false
+    },
+    {
+      id: '3',
+      title: 'Cosmos Laundromat',
+      originalTitle: 'First Cycle: Franck & Victor',
+      director: 'Mathieu Auvray',
+      studio: 'Blender Animation Film Foundation',
+      year: '2023 4K',
+      duration: '12:08',
+      aspectRatio: '2.39:1 Panavision',
+      audioFormat: 'Binaural / Dolby Atmos Bed',
+      colorGrade: 'Desolate Monochromatic to Hyper-Color',
+      colorPalette: ['#3f3f46', '#e4e4e7', '#f43f5e', '#6366f1', '#18181b'],
+      synopsis: 'Di sebuah tebing pulau terasing yang suram, seekor domba depresi bernama Franck bertemu dengan Victor—penjual misterius yang menawarinya pintu gerbang ke ribuan reinkarnasi kehidupan baru di semesta paralel.',
+      curatorQuote: '“Penceritaan surealis eksistensial yang menantang batas teknis render rambut dan pencahayaan atmosferik.”',
+      awards: ['Pemenang Jury Award Animago', 'Best Visual Design Ottawa Animation Festival'],
+      mood: 'kontemplatif',
+      moodLabel: 'Kontemplatif & Filosofis',
+      backdrop: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&auto=format&fit=crop&q=90',
+      poster: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=700&auto=format&fit=crop&q=85',
+      src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+      isFeatured: false
+    },
+    {
+      id: '4',
+      title: 'Sintel: The Dragon Huntress',
+      originalTitle: 'Project Durian',
+      director: 'Colin Levy',
+      studio: 'Blender Creative Arts',
+      year: '2022 Remaster',
+      duration: '15:10',
+      aspectRatio: '1.85:1 Academy Flat',
+      audioFormat: 'Dolby 5.1 Cinematic Mix',
+      colorGrade: 'Desert Ochre & Frozen Glacial Cyan',
+      colorPalette: ['#7c2d12', '#ea580c', '#0891b2', '#f59e0b', '#1c1917'],
+      synopsis: 'Perjalanan penuh luka seorang pengembara wanita melintasi gurun tandus dan pegunungan es beku demi menyelamatkan seekor bayi naga yang menjadi satu-satunya ikatan emosional dalam hidupnya.',
+      curatorQuote: '“Tragedi naratif yang menohok dengan klimaks yang merobek perasaan penonton tentang arti pengorbanan.”',
+      awards: ['Koleksi Master Sinema Terbuka', 'Best Epic Fantasy Narrative'],
+      mood: 'adrenalin',
+      moodLabel: 'Adrenalin & Petualangan',
+      backdrop: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920&auto=format&fit=crop&q=90',
+      poster: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&auto=format&fit=crop&q=85',
+      src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+      isFeatured: false
+    },
+    {
+      id: '5',
+      title: 'Big Buck Bunny',
+      originalTitle: 'A Peach Open Movie',
+      director: 'Sacha Goedegebure',
+      studio: 'Peach Project Studios',
+      year: '2024 HDR',
+      duration: '09:56',
+      aspectRatio: '1.78:1 HD Widescreen',
+      audioFormat: 'Uncompressed Stereo / 5.1 PCM',
+      colorGrade: 'Vibrant Daylight & Saturated Forest Green',
+      colorPalette: ['#14532d', '#15803d', '#84cc16', '#eab308', '#052e16'],
+      synopsis: 'Kisah seekor kelinci bertubuh raksasa berhati damai yang akhirnya merancang perangkap mekanis jenius untuk membalas keisengan kelompok hewan pengerat jahil di hutan.',
+      curatorQuote: '“Tonggak sejarah perfilman open source dunia yang mendefinisikan standar animasi 3D modern tanpa batas lisensi komersial.”',
+      awards: ['Koleksi Legenda Sinema Independen', 'Pionir Standar Pengujian 4K Dunia'],
+      mood: 'animasi',
+      moodLabel: 'Visual Puisi & Animasi',
+      backdrop: 'https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=1920&auto=format&fit=crop&q=90',
+      poster: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=700&auto=format&fit=crop&q=85',
+      src: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+      isFeatured: false
+    }
+  ])
+
+  const selectedMood = ref<string>('all')
+
+  const featuredFilm = computed(() => films.value.find(f => f.isFeatured) || films.value[0])
+
+  const filteredFilms = computed(() => {
+    if (selectedMood.value === 'all') return films.value
+    return films.value.filter(f => f.mood === selectedMood.value)
+  })
+
+  function getFilmById(id: string): FilmItem {
+    return films.value.find(f => f.id === id) || films.value[0]
+  }
+
+  function setMood(mood: string) {
+    selectedMood.value = mood
+  }
+
+  return {
+    films,
+    selectedMood,
+    featuredFilm,
+    filteredFilms,
+    getFilmById,
+    setMood
+  }
+})

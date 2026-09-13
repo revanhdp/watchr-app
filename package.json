@@ -1,0 +1,27 @@
+{
+  "name": "vid-play",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^4.11.1",
+    "@pinia/nuxt": "^1.0.2",
+    "@vueuse/core": "^14.4.0",
+    "hls.js": "^1.7.3",
+    "nuxt": "^4.5.2",
+    "pinia": "^4.0.3",
+    "vidstack": "^1.15.6",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.0"
+  },
+  "devDependencies": {
+    "@iconify-json/heroicons": "^1.2.3",
+    "@iconify-json/lucide": "^1.2.132"
+  }
+}

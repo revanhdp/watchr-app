@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { useVideoStore } from '~/stores/video'
+import { usePlayerStore } from '~/stores/player'
 
 const route = useRoute()
 const videoStore = useVideoStore()
+const playerStore = usePlayerStore()
 
 // Get film from store based on route param id
 const filmId = computed(() => (route.params.id as string) || '1')
 const film = computed(() => videoStore.getFilmById(filmId.value))
+
+// Sync active film with player store
+watch(film, (newFilm) => {
+  if (newFilm) {
+    playerStore.setActiveFilm(newFilm)
+  }
+}, { immediate: true })
 
 // Theater mode: dims everything else to focus exclusively on the glowing screen
 const isTheaterLightsOff = ref(false)
@@ -17,6 +26,26 @@ function toggleLights() {
 
 // Next films in sequence
 const nextFilms = computed(() => videoStore.films.filter(f => f.id !== film.value.id))
+
+onMounted(async () => {
+  // Hide mini player while in the theater room
+  playerStore.hideMiniPlayer()
+
+  if (filmId.value) {
+    const loaded = await videoStore.fetchFilmById(filmId.value)
+    if (loaded) {
+      playerStore.setActiveFilm(loaded)
+    }
+    videoStore.trackView(filmId.value)
+  }
+})
+
+// When leaving the theater room, if playback is active, dock to mini player
+onUnmounted(() => {
+  if (playerStore.isPlaying) {
+    playerStore.showMiniPlayer()
+  }
+})
 </script>
 
 <template>
@@ -176,6 +205,9 @@ const nextFilms = computed(() => videoStore.films.filter(f => f.id !== film.valu
               ✦ {{ award }}
             </span>
           </div>
+
+          <!-- Scene / Chapter Navigator -->
+          <SceneNavigator :chapters="film.chapters" class="mt-2" />
         </div>
 
         <!-- Right: Sequence Queue / Next Curated Reels (4 Cols) -->

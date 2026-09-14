@@ -2,11 +2,19 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  devServer: {
+    port: Number(process.env.PORT) || 3001
+  },
   css: ['~/assets/css/main.css'],
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt'
   ],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000'
+    }
+  },
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => tag.startsWith('media-')

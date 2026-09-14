@@ -23,6 +23,10 @@ const moods = [
 ]
 
 const hero = computed(() => videoStore.featuredFilm)
+
+onMounted(() => {
+  videoStore.fetchFilms()
+})
 </script>
 
 <template>
